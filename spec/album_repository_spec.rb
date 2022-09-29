@@ -13,11 +13,9 @@ RSpec.describe AlbumRepository do
     end
 
     it "returns the list of albums" do
-    repo = AlbumRepository.new
+      repo = AlbumRepository.new
 
-    albums = repo.all
-
-        albums = repo.all
+      albums = repo.all
         
         expect(albums.length).to eq 2
         expect(albums.first.id).to eq '1'
@@ -25,4 +23,26 @@ RSpec.describe AlbumRepository do
         expect(albums.first.release_year).to eq '1988'
         expect(albums.first.artist_id).to eq '1'
     end
+
+    it "returns one album with id of 1 - Surfer Rosa" do
+      repo = AlbumRepository.new
+        album = repo.find(1)
+
+        expect(album.title).to eq 'Surfer Rosa'
+        expect(album.release_year).to eq '1988'
+        expect(album.artist_id).to eq '1'
+    end
+
+    it "returns one album with id of 2 - Bossanova" do
+      repo = AlbumRepository.new
+        album = repo.find(2)
+  
+          expect(album.title).to eq 'Bossanova'
+          expect(album.release_year).to eq '1990'
+          expect(album.artist_id).to eq '1'
+      end
 end
+
+
+
+

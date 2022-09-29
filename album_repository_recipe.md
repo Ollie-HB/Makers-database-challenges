@@ -47,20 +47,22 @@ class AlbumRepository
     # Returns an array of Album objects.
   end
 
+   # Gets a single record by its ID
+  # One argument: the id (number)
+
+  def find(id)
+    # Executes the SQL query:
+    # SELECT id, title, release_year, artist_id FROM albums WHERE id = $1;
+
+    # Returns a single Album object.
+  end
+
 6. Write Test Examples
 
 # 1. Get all albums
 
 repo = AlbumRepository.new
 
-albums = repo.all
-albums.length # =>  2
-albums.first.id # => '1'
-albums.first.title # => 'Surfer Rosa'
-albums.first.release_year # => 1988
-albums.first.artist_id => '1'
-
-RSpec.describe AlbumRepository do
     it "returns the list of albums" do
     repo = AlbumRepository.new
 
@@ -76,6 +78,27 @@ RSpec.describe AlbumRepository do
     end
 end
 
+# 2. Gets a single record by its ID
+
+ it "returns one album with id of 1 - Surfer Rosa" do
+      repo = AlbumRepository.new
+        album = repo.find(1)
+        
+        expect(album.title).to eq 'Surfer Rosa'
+        expect(album.release_year).to eq '1988'
+        expect(album.artist_id).to eq '1'
+    end
+
+# 3. Gets a single record by its ID(2)
+
+ it "returns one album with id of 2 - Bossanova" do
+      repo = AlbumRepository.new
+        album = repo.find(2)
+  
+          expect(album.title).to eq 'Bossanova'
+          expect(album.release_year).to eq '1990'
+          expect(album.artist_id).to eq '1'
+  end
 
 7. Reload the SQL seeds before each test run
 
